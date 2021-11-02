@@ -4,13 +4,13 @@ import pdb
 import os
 with open('devices.yml', 'r') as f:
     devices = yaml.safe_load(f)
-# devices = open('devices.yml', 'r')
+
 with open('vlans.yml', 'r') as f:
     vlans = yaml.safe_load(f)
 output_directory = "_output"
 if not os.path.exists(output_directory):
     os.mkdir(output_directory)
-# vlans = open('vlans.yml', 'r')
+
 # press c to continue
 # type a variable name to see the data
 # pdb.set_trace()
