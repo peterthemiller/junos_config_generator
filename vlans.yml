@@ -1,0 +1,11 @@
+---
+vlans:
+  - name: VLAN0010
+    id: 10
+    description: Users
+  - name: VLAN0020
+    id: 20
+    description: Phones
+  - name: VLAN0030
+    id: 30
+    description: Printers

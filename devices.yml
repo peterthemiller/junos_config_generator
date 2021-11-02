@@ -1,0 +1,66 @@
+---
+devices:
+  - hostname: QFX1
+    interfaces:
+      - name: ge-0/0/1
+        unit: 0
+        ip: 192.168.1.1
+        mask: /24
+        description: to QFX2
+      - name: ge-0/0/2
+        unit: 0
+        ip: 10.10.1.1
+        mask: /24
+        description: to QFX3
+
+  - hostname: QFX2
+    interfaces:
+      - name: ge-0/0/1
+        unit: 0
+        ip: 192.168.1.2
+        mask: /24
+        description: to QFX1
+      - name: ge-0/0/2
+        unit: 0
+        ip: 10.10.1.2
+        mask: /24
+        description: to QFX4
+
+  - hostname: QFX3
+    interfaces:
+      - name: ge-0/0/1
+        unit: 0
+        ip: 192.168.1.3
+        mask: /24
+        description: to QFX1
+      - name: ge-0/0/2
+        unit: 0
+        ip: 10.10.1.3
+        mask: /24
+        description: to QFX5
+
+  - hostname: QFX4
+    interfaces:
+      - name: ge-0/0/1
+        unit: 0
+        ip: 192.168.1.4
+        mask: /24
+        description: to QFX2
+      - name: ge-0/0/2
+        unit: 0
+        ip: 10.10.1.4
+        mask: /24
+        description: to hosts
+
+  - hostname: QFX5
+    interfaces:
+      - name: ge-0/0/1
+        unit: 0
+        ip: 192.168.1.5
+        mask: /24
+        description: to QFX3
+      - name: ge-0/0/2
+        unit: 0
+        ip: 10.10.1.5
+        mask: /24
+        description: to hosts

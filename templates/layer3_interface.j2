@@ -1,0 +1,15 @@
+interfaces {
+{% for item in interfaces %}
+    {{ item.name }} {
+        unit {{ item.unit }} {
+            family inet {
+                address {{ item.ip }} {{item.mask}} ;
+                no-redirects;
+                description {{ item.description }} ;
+                {# rpf-check; #}
+                {# I think it's only needed at WAN edge, more STIG investigations to due#}
+            }
+        }
+    }
+{% endfor %}
+}

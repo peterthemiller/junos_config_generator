@@ -1,0 +1,37 @@
+{% set hash =  "$6$Mj7jZ6K7$YFmGnY6bxnDKQJXJA3gXuCaVXPE4V8IV8mInSeDY7EI9QF7RV5jk/U8QCIST6ioTU1Mw8hdS0Qk0keqKRGtYR0" %}
+
+system {
+    host-name {{ hostname }} ;
+    root-authentication {
+        encrypted-password {{ hash }} ; ## SECRET-DATA
+    }
+    login {
+        user netlaw{
+            uid 2001;
+            class super-user;
+            authentication {
+                encrypted-password {{ hash }} ; ## SECRET-DATA
+            }
+        }
+    }
+    services {
+        ssh {
+            root-login deny;
+        }
+    }
+    syslog {
+        user * {
+            any emergency;
+        }
+        file messages {
+            any notice;
+            authorization info;
+        }
+        file interactive-commands {
+            interactive-commands any;
+        }
+    }
+
+}
+{% include 'vlans.j2' %}
+{% include 'layer3_interface.j2' %}
