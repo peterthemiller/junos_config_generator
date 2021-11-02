@@ -14,7 +14,6 @@ if not os.path.exists(output_directory):
 # press c to continue
 # type a variable name to see the data
 # pdb.set_trace()
-
 loader = FileSystemLoader('./templates')
 # trim_blocks keeps there from being unexpected white space after each vblock
 # this would apply to comments even!
@@ -23,9 +22,8 @@ loader = FileSystemLoader('./templates')
 # or look https://ttl255.com/jinja2-tutorial-part-3-whitespace-control/ at this if you want to die
 env = Environment(loader=loader, trim_blocks=True, lstrip_blocks=True)
 
-# vlan_temp = env.get_template('vlans.j2')
-# rendered = vlan_temp.render(vlans)
-# pdb.set_trace()
+vlan_temp = env.get_template('vlans.j2')
+rendered = vlan_temp.render(vlans)
 
 
 for device in devices['devices']:
@@ -33,7 +31,8 @@ for device in devices['devices']:
     device_config = device_template.render(device)
     f = open(os.path.join(output_directory,
              device['hostname'] + ".conf"), "w+")
-    f.write(device_config)
+    f.write(device_config + '\n')
+    f.write(rendered)
     f.close()
     print(f"Configuration for {device['hostname']} created")
 print("DONE")
