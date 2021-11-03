@@ -1,11 +1,14 @@
 ---
 vlans:
-  - name: VLAN0010
+  - name: USERS
     id: 10
     description: Users
-  - name: VLAN0020
+  - name: PHONES
     id: 20
     description: Phones
-  - name: VLAN0030
+  - name: PRINTERS
     id: 30
     description: Printers
+  - name: MGMT
+    id: 40
+    description: Management

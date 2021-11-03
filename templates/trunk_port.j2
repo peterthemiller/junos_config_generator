@@ -1,0 +1,14 @@
+interfaces {
+{% for item in trunk_ports %}
+    {{ item.name }} {
+        unit 0 {
+            family ethernet-switching {
+                port-mode trunk;
+                vlan {
+                    members [ USERS PHONES PRINTERS MGMT ]
+                }
+            }
+        }
+    }
+{% endfor %}
+}

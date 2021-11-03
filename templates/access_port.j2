@@ -1,0 +1,15 @@
+interfaces {
+{% for item in access_ports %}
+    {{ item.name }} {
+        disable;
+        unit 0 {
+            family ethernet-switching {
+                port-mode access;
+                vlan {
+                    members USERS
+                }
+            }
+        }
+    }
+{% endfor %}
+}
