@@ -1,6 +1,6 @@
 ---
 devices:
-  - hostname: QFX1
+  - hostname: CN1
     CN: CN1
     interfaces:
       - name: ge-0/0/1
@@ -24,7 +24,7 @@ devices:
         mask: /24
         description: CN1_MGMT
 
-  - hostname: QFX2
+  - hostname: CN2
     CN: CN2
     interfaces:
       - name: ge-0/0/1
@@ -48,7 +48,7 @@ devices:
         mask: /24
         description: CN2_MGMT
 
-  - hostname: QFX3
+  - hostname: DN1
     CN: CN1
     interfaces:
       - name: ge-0/0/1
@@ -67,7 +67,7 @@ devices:
         mask: /24
         description: CN1_MGMT
 
-  - hostname: QFX4
+  - hostname: DN2
     CN: CN2
     interfaces:
       - name: ge-0/0/1
@@ -86,7 +86,7 @@ devices:
         mask: /24
         description: CN2_MGMT
 
-  - hostname: QFX5
+  - hostname: AN5
     CN: CN1
     interfaces:
       - name: irb
@@ -94,8 +94,12 @@ devices:
         ip: 192.168.1.5
         mask: /24
         description: CN1_MGMT
+    trunk_ports:
+      - name: ge-0/0/0
+    access_ports:
+      - name: ge-0/0/7
 
-  - hostname: QFX6
+  - hostname: AN6
     CN: CN1
     interfaces:
       - name: irb
@@ -104,7 +108,7 @@ devices:
         mask: /24
         description: CN1_MGMT
 
-  - hostname: QFX7
+  - hostname: AN7
     CN: CN2
     interfaces:
       - name: irb
@@ -113,7 +117,7 @@ devices:
         mask: /24
         description: CN2_MGMT
 
-  - hostname: QFX8
+  - hostname: AN8
     CN: CN2
     interfaces:
       - name: irb

@@ -1,9 +1,9 @@
 vlans {
 {% for vlan in vlans %}
-    {{ vlan.name }} {
-        vlan-id {{ vlan.id }};
-        l3-interface irb.{{ vlan.id }};
-        description {{ vlan.description }} 
+    {{ CN }}_{{ vlan.name }} {
+        vlan-id {{ CN[-1] }}{{ vlan.id }};
+        l3-interface irb.{{ CN[-1] }}{{ vlan.id }};
+        description {{ CN }}_{{ vlan.description }}; 
     }
 {% endfor %}
 }

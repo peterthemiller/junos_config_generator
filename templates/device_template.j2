@@ -1,7 +1,8 @@
 {% set hash =  "$6$Mj7jZ6K7$YFmGnY6bxnDKQJXJA3gXuCaVXPE4V8IV8mInSeDY7EI9QF7RV5jk/U8QCIST6ioTU1Mw8hdS0Qk0keqKRGtYR0" %}
 
 system {
-    host-name {{ hostname }} ;
+    host-name {{ hostname }};
+    domain-name honeybadgers.lab;
     root-authentication {
         encrypted-password {{ hash }} ; ## SECRET-DATA
     }
@@ -34,10 +35,6 @@ system {
 
 }
 
-{% include 'layer3_interface.j2' %}
-
-{% include 'access_port.j2' %}
-
-{% include 'trunk_port.j2' %}
+{% include 'interfaces.j2' %}
 
 {% include 'vlans.j2' %}
