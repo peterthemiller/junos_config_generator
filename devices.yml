@@ -37,7 +37,7 @@ devices:
         ip: 10.2.3.1
         mask: /30
         description: to QFX3
-      - name: em1
+      - name: em3
         unit: 0
         ip: 10.2.4.1
         mask: /30
