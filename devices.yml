@@ -66,6 +66,9 @@ devices:
         ip: 192.168.1.3
         mask: /24
         description: CN1_MGMT
+    trunk_ports:
+      - name: em3
+      - name: em5
 
   - hostname: DN2
     CN: CN2
@@ -85,7 +88,9 @@ devices:
         ip: 192.168.2.4
         mask: /24
         description: CN2_MGMT
-
+    trunk_ports:
+      - name: em3
+      - name: em5
   - hostname: AN5
     CN: CN1
     interfaces:
