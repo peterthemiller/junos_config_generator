@@ -1,5 +1,5 @@
 interfaces {
-{% for item in interfaces %}
+{% for item in ip_interfaces %}
     {{ item.name }} {
         unit {{ item.unit }} {
             family inet {

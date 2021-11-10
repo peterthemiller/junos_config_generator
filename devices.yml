@@ -2,46 +2,61 @@
 devices:
   - hostname: CN1
     CN: CN1
-    interfaces:
-      - name: em0
+    ip_interfaces:
+      - name: xe-0/0/0
+        unit: 0
+        ip: 10.0.1.2
+        mask: /30
+        description: to SDP
+      - name: xe-0/0/3
         unit: 0
         ip: 10.1.2.1
         mask: /30
-        description: to QFX2
-      - name: em6
+        description: to CN2
+      - name: xe-0/0/1
         unit: 0
         ip: 10.1.3.1
         mask: /30
-        description: to QFX3
-      - name: em3
+        description: to DN1
+      - name: xe-0/0/2
         unit: 0
         ip: 10.1.4.1
         mask: /30
-        description: to QFX4
+        description: to DN2
       - name: irb
         unit: 140
         ip: 192.168.1.1
         mask: /24
         description: CN1_MGMT
+    ospf_interfaces:
+      - name: xe-0/0/0
+      - name: xe-0/0/1
+      - name: xe-0/0/2
+      - name: xe-0/0/3
 
   - hostname: CN2
     CN: CN2
-    interfaces:
-      - name: em0
+    ip_interfaces:
+      - name: xe-0/0/0
+        unit: 0
+        ip: 10.0.2.2
+        mask: /30
+        description: to SDP
+      - name: xe-0/0/3
         unit: 0
         ip: 10.1.2.2
         mask: /30
-        description: to QFX1
-      - name: em6
+        description: to CN1
+      - name: xe-0/0/1
         unit: 0
         ip: 10.2.3.1
         mask: /30
-        description: to QFX3
-      - name: em3
+        description: to DN1
+      - name: xe-0/0/2
         unit: 0
         ip: 10.2.4.1
         mask: /30
-        description: to QFX4
+        description: to DN2
       - name: irb
         unit: 240
         ip: 192.168.2.1
@@ -50,83 +65,88 @@ devices:
 
   - hostname: DN1
     CN: CN1
-    interfaces:
-      - name: em0
+    ip_interfaces:
+      - name: xe-0/0/0
         unit: 0
         ip: 10.1.3.2
         mask: /30
-        description: to QFX1
-      - name: em6
+        description: to CN1
+      - name: xe-0/0/1
         unit: 0
         ip: 10.2.3.2
         mask: /30
-        description: to QFX2
+        description: to CN2
       - name: irb
         unit: 140
         ip: 192.168.1.3
         mask: /24
         description: CN1_MGMT
     trunk_ports:
-      - name: em3
-      - name: em5
+      - name: xe-0/0/2
+      - name: xe-0/0/3
 
   - hostname: DN2
     CN: CN2
-    interfaces:
-      - name: em0
+    ip_interfaces:
+      - name: xe-0/0/0
         unit: 0
         ip: 10.1.4.2
         mask: /30
-        description: to QFX1
-      - name: em6
+        description: to CN1
+      - name: xe-0/0/1
         unit: 0
         ip: 10.2.4.2
         mask: /30
-        description: to QFX2
+        description: to CN2
       - name: irb
         unit: 240
         ip: 192.168.2.4
         mask: /24
         description: CN2_MGMT
     trunk_ports:
-      - name: em3
-      - name: em5
+      - name: xe-0/0/2
+      - name: xe-0/0/3
+
   - hostname: AN5
     CN: CN1
-    interfaces:
+    ip_interfaces:
       - name: irb
         unit: 140
         ip: 192.168.1.5
         mask: /24
         description: CN1_MGMT
     trunk_ports:
-      - name: ge-0/0/0
-    access_ports:
-      - name: ge-0/0/7
+      - name: xe-0/0/0
 
   - hostname: AN6
     CN: CN1
-    interfaces:
+    ip_interfaces:
       - name: irb
         unit: 140
         ip: 192.168.1.6
         mask: /24
         description: CN1_MGMT
+    trunk_ports:
+      - name: xe-0/0/0
 
   - hostname: AN7
     CN: CN2
-    interfaces:
+    ip_interfaces:
       - name: irb
         unit: 240
         ip: 192.168.2.7
         mask: /24
         description: CN2_MGMT
+    trunk_ports:
+      - name: xe-0/0/0
 
   - hostname: AN8
     CN: CN2
-    interfaces:
+    ip_interfaces:
       - name: irb
         unit: 240
         ip: 192.168.2.8
         mask: /24
         description: CN2_MGMT
+    trunk_ports:
+      - name: xe-0/0/0

@@ -1,5 +1,5 @@
 {% set hash =  "$6$Mj7jZ6K7$YFmGnY6bxnDKQJXJA3gXuCaVXPE4V8IV8mInSeDY7EI9QF7RV5jk/U8QCIST6ioTU1Mw8hdS0Qk0keqKRGtYR0" %}
-
+{% set peter_hash = "$6$ibKgP0Q6$NhsnM.EApWp4qY2SgaTzkmjWt76tAzLQ9.LVDJdMp9BT8xlau.BCNDy15nONLfGahlsagG34BF..ok1cyjn/30"%}
 system {
     host-name {{ hostname }};
     domain-name honeybadgers.lab;
@@ -12,6 +12,13 @@ system {
             class super-user;
             authentication {
                 encrypted-password {{ hash }} ; ## SECRET-DATA
+            }
+        }
+        user peter {
+            uid 2002;
+            class super-user;
+            authentication {
+                encrypted-password {{ peter_hash }}; ## SECRET-DATA
             }
         }
     }
