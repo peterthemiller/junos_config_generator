@@ -10,7 +10,6 @@ interfaces {
         }
     }
 {% endfor %}
-interfaces {
 {% for item in vlans if 'DN' in hostname  %}
     irb {
         unit {{ CN }}{{ item.id }} {
@@ -20,16 +19,15 @@ interfaces {
                 description "layer 3 interface for vlan {{ CN }}_{{ item.name }} {{ CN[-1] }}{{ item.id}}"
             }
         }
-    }
 {% endfor %}
-
 {% for item in trunk_ports %}
     {{ item.name }} {
         unit 0 {
             family ethernet-switching {
+                native-vlan-id 666;
                 port-mode trunk;
                 vlan {
-                    members [ {% for vlan in vlans %}{{ vlan.name }}{% if not loop.last %} {% endif %} {% endfor %}];
+                    members [ {% for vlan in vlans %}{{ vlan.name }}{% if (not loop.last) %} {% endif %} {% endfor %}];
                 }
             }
         }
