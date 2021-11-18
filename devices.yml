@@ -97,10 +97,6 @@ devices:
       - name: xe-0/0/5
       - name: xe-0/0/6
       - name: xe-0/0/7
-      - name: xe-0/0/8
-      - name: xe-0/0/9
-      - name: xe-0/0/10
-      - name: xe-0/0/11
 
   - hostname: DN2
     CN: CN2
@@ -153,11 +149,6 @@ devices:
       - name: xe-0/0/4
       - name: xe-0/0/5
       - name: xe-0/0/6
-      - name: xe-0/0/7
-      - name: xe-0/0/8
-      - name: xe-0/0/9
-      - name: xe-0/0/10
-      - name: xe-0/0/11
 
   - hostname: AN6
     CN: CN1
@@ -178,9 +169,6 @@ devices:
       - name: xe-0/0/6
       - name: xe-0/0/7
       - name: xe-0/0/8
-      - name: xe-0/0/9
-      - name: xe-0/0/10
-      - name: xe-0/0/11
 
   - hostname: AN7
     CN: CN2
@@ -200,10 +188,6 @@ devices:
       - name: xe-0/0/5
       - name: xe-0/0/6
       - name: xe-0/0/7
-      - name: xe-0/0/8
-      - name: xe-0/0/9
-      - name: xe-0/0/10
-      - name: xe-0/0/11
 
   - hostname: AN8
     CN: CN2
@@ -225,5 +209,3 @@ devices:
       - name: xe-0/0/7
       - name: xe-0/0/8
       - name: xe-0/0/9
-      - name: xe-0/0/10
-      - name: xe-0/0/11

@@ -12,3 +12,9 @@ vlans:
   - name: MGMT
     id: 40
     description: Management
+  - name: DEAD_VLAN
+    id: 666
+    description: DEAD_VLAN
+  - name: NATIVE_VLAN
+    id: 999
+    description: NATIVE_VLAN

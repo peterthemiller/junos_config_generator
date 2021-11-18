@@ -24,7 +24,7 @@ interfaces {
     {{ item.name }} {
         unit 0 {
             family ethernet-switching {
-                native-vlan-id 666;
+                native-vlan-id 999;
                 port-mode trunk;
                 vlan {
                     members [ {% for vlan in vlans %}{{ vlan.name }}{% if (not loop.last) %} {% endif %} {% endfor %}];
@@ -35,7 +35,6 @@ interfaces {
 {% endfor %}
 {% for item in access_ports %}
     {{ item.name }} {
-        disable;
         unit 0 {
             family ethernet-switching {
                 port-mode access;

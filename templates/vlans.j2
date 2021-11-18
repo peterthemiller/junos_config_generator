@@ -1,9 +1,16 @@
 vlans {
 {% for vlan in vlans %}
+{% if (vlan.name == 'DEAD_VLAN') or (vlan.name == 'NATIVE_VLAN') %}
+    {{ vlan.name }} {
+        vlan-id {{ vlan.id }};
+        description {{ vlan.description }};
+    }
+{% else %}
     {{ CN }}_{{ vlan.name }} {
         vlan-id {{ CN[-1] }}{{ vlan.id }};
         l3-interface irb.{{ CN[-1] }}{{ vlan.id }};
         description {{ CN }}_{{ vlan.description }}; 
     }
+{% endif %}
 {% endfor %}
 }

@@ -1,15 +1,19 @@
-ospf {
-    area 0.0.0.0 {
-        {% for item in ospf_interfaces %}
-        interface {{ item.name }}.0 {
-            interface-type p2p;
-            hello-interval 1;
-            dead-interval 4;
-            authentication {
-                md5 1 key "$9$chHrvLdVYaGi7-VYoJkqp0OISrvWL"; ## SECRET-DATA
+{% if ('AN' not in hostname) %}
+protocols {
+        ospf {
+            area 0.0.0.0 {
+                {% for item in ospf_interfaces %}
+                interface {{ item.name }}.0 {
+                    interface-type p2p;
+                    hello-interval 1;
+                    dead-interval 4;
+                    authentication {
+                        md5 1 key "$9$chHrvLdVYaGi7-VYoJkqp0OISrvWL"; ## SECRET-DATA
+                    }
+                }
+                {% endfor %}
             }
+            reference-bandwidth 100g;
         }
-        {% endfor %}
-    }
-    reference-bandwidth 100g;
 }
+{% endif %}
