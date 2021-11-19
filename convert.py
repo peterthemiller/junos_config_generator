@@ -2,7 +2,6 @@ import juniper_display_set.junos_converter
 import os
 import sys
 results_folder = [file for file in os.listdir('_output') if os.path.isfile]
-print(results_folder)
 if not os.path.exists('_output/set'):
     set_folder = os.mkdir('_output/set')
 for device in results_folder:

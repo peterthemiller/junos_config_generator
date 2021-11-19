@@ -20,6 +20,7 @@ interfaces {
             }
         }
 {% endfor %}
+{% set vlans = vlans[0:-2] %}
 {% for item in trunk_ports %}
     {{ item.name }} {
         unit 0 {
