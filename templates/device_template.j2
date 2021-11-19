@@ -42,7 +42,8 @@ system {
 
 }
 {% include 'interfaces.j2' %}
-
+{% if 'CN' not in hostname %}
 {% include 'vlans.j2' %}
+{% endif %}
 
 {% include 'protocols.j2' %}
