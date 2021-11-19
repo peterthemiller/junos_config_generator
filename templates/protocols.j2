@@ -34,7 +34,7 @@ protocols {
             }
             {% endfor %}
             msti 1 {
-                bridge-priority ;
+                bridge-priority {{ stp_priority }};
 {% set vlans = vlans[0:-2] %}
                 vlan [ {% for vlan in vlans %}{{ vlan.name }}{% if (not loop.last) %} {% endif %} {% endfor %}];
             }
