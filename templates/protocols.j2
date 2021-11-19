@@ -1,5 +1,5 @@
-{% if ('AN' not in hostname) %}
 protocols {
+{% if ('AN' not in hostname) %}
         ospf {
             area 0.0.0.0 {
                 {% for item in ospf_interfaces %}
@@ -15,5 +15,30 @@ protocols {
             }
             reference-bandwidth 100g;
         }
-}
 {% endif %}
+{% if ('CN' not in hostname) %}
+    {% if ('DN' in hostname) %} 
+        {% set stp_priority = '8k' %}
+    {% else %}
+        {% set stp_priority = '16k' %}
+    {% endif %}
+        mstp {
+            bpdu-block-on-edge;
+            configuration-name labregion1;
+            bridge-priority {{ stp_priority }};
+            interface all;
+            {% for item in access_ports %}
+            interface {{ item.name }} {
+                no-root-port;
+                edge;
+            }
+            {% endfor %}
+            msti 1 {
+                bridge-priority ;
+{% set vlans = vlans[0:-2] %}
+                vlan [ {% for vlan in vlans %}{{ vlan.name }}{% if (not loop.last) %} {% endif %} {% endfor %}];
+            }
+            
+        }
+{% endif %}
+}
