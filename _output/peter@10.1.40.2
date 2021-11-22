@@ -1,5 +1,5 @@
 system {
-    host-name AN8;
+    host-name AN5;
     domain-name honeybadgers.lab;
     root-authentication {
         encrypted-password $6$Mj7jZ6K7$YFmGnY6bxnDKQJXJA3gXuCaVXPE4V8IV8mInSeDY7EI9QF7RV5jk/U8QCIST6ioTU1Mw8hdS0Qk0keqKRGtYR0 ; ## SECRET-DATA
@@ -41,10 +41,10 @@ system {
 }
 interfaces {
     irb {
-        unit 240 {
-            description "CN2_MGMT";
+        unit 140 {
+            description "CN1_MGMT";
             family inet {
-                address 10.2.40.3/24;
+                address 10.1.40.2/24;
                 no-redirects;
             }
         }
@@ -55,7 +55,7 @@ interfaces {
                 native-vlan-id 999;
                 interface-mode trunk;
                 vlan {
-                    members [ CN2_USERS  CN2_PHONES  CN2_PRINTERS  CN2_MGMT ];
+                    members [ CN1_USERS  CN1_PHONES  CN1_PRINTERS  CN1_MGMT ];
                 }
             }
         }
@@ -65,7 +65,7 @@ interfaces {
             family ethernet-switching {
                 interface-mode access;
                 vlan {
-                    members CN2_USERS;
+                    members CN1_USERS;
                 }
             }
         }
@@ -75,7 +75,7 @@ interfaces {
             family ethernet-switching {
                 interface-mode access;
                 vlan {
-                    members CN2_USERS;
+                    members CN1_USERS;
                 }
             }
         }
@@ -85,7 +85,7 @@ interfaces {
             family ethernet-switching {
                 interface-mode access;
                 vlan {
-                    members CN2_USERS;
+                    members CN1_USERS;
                 }
             }
         }
@@ -95,7 +95,7 @@ interfaces {
             family ethernet-switching {
                 interface-mode access;
                 vlan {
-                    members CN2_USERS;
+                    members CN1_USERS;
                 }
             }
         }
@@ -105,7 +105,7 @@ interfaces {
             family ethernet-switching {
                 interface-mode access;
                 vlan {
-                    members CN2_USERS;
+                    members CN1_USERS;
                 }
             }
         }
@@ -115,58 +115,32 @@ interfaces {
             family ethernet-switching {
                 interface-mode access;
                 vlan {
-                    members CN2_USERS;
-                }
-            }
-        }
-    }
-    xe-0/0/7 {
-        unit 0 {
-            family ethernet-switching {
-                interface-mode access;
-                vlan {
-                    members CN2_USERS;
-                }
-            }
-        }
-    }
-    xe-0/0/8 {
-        unit 0 {
-            family ethernet-switching {
-                interface-mode access;
-                vlan {
-                    members CN2_USERS;
-                }
-            }
-        }
-    }
-    xe-0/0/9 {
-        unit 0 {
-            family ethernet-switching {
-                interface-mode access;
-                vlan {
-                    members CN2_USERS;
+                    members CN1_USERS;
                 }
             }
         }
     }
 }
 vlans {
-    CN2_USERS {
-        vlan-id 210;
-        description CN2_Users; 
+    CN1_USERS {
+        vlan-id 110;
+        l3-interface irb.110;
+        description CN1_Users; 
     }
-    CN2_PHONES {
-        vlan-id 220;
-        description CN2_Phones; 
+    CN1_PHONES {
+        vlan-id 120;
+        l3-interface irb.120;
+        description CN1_Phones; 
     }
-    CN2_PRINTERS {
-        vlan-id 230;
-        description CN2_Printers; 
+    CN1_PRINTERS {
+        vlan-id 130;
+        l3-interface irb.130;
+        description CN1_Printers; 
     }
-    CN2_MGMT {
-        vlan-id 240;
-        description CN2_Management; 
+    CN1_MGMT {
+        vlan-id 140;
+        l3-interface irb.140;
+        description CN1_Management; 
     }
     DEAD_VLAN {
         vlan-id 666;
@@ -207,21 +181,9 @@ protocols {
                 no-root-port;
                 edge;
             }
-            interface xe-0/0/7 {
-                no-root-port;
-                edge;
-            }
-            interface xe-0/0/8 {
-                no-root-port;
-                edge;
-            }
-            interface xe-0/0/9 {
-                no-root-port;
-                edge;
-            }
             msti 1 {
                 bridge-priority 16k;
-                vlan [ 210  220  230  240 ];
+                vlan [ 110  120  130  140 ];
             }
             
         }

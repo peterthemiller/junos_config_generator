@@ -8,7 +8,9 @@ vlans {
 {% else %}
     {{ CN }}_{{ vlan.name }} {
         vlan-id {{ CN[-1] }}{{ vlan.id }};
+        {% if 'DN' in hostname %}
         l3-interface irb.{{ CN[-1] }}{{ vlan.id }};
+        {% endif %}
         description {{ CN }}_{{ vlan.description }}; 
     }
 {% endif %}

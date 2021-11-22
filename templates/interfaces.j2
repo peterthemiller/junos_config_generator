@@ -2,23 +2,24 @@ interfaces {
 {% for item in ip_interfaces %}
     {{ item.name }} {
         unit {{ item.unit }} {
+            description "{{ item.description }}";
             family inet {
                 address {{ item.ip }}{{item.mask}};
                 no-redirects;
-                description {{ item.description }};
             }
         }
     }
 {% endfor %}
-{% for item in vlans if 'DN' in hostname  %}
+{% for item in vlans[:-2] if 'DN' in hostname  %}
     irb {
-        unit {{ CN }}{{ item.id }} {
+        unit {{ CN[2:] }}{{ item.id }} {
+            description "layer 3 interface for vlan {{ CN }}_{{ item.name }} {{ CN[-1] }}{{ item.id}}"
             family inet {
-                address 10.{{ CN[-1] }}.{{ item.id }}/24;
+                address 10.{{ CN[-1] }}.{{ item.id }}.1/24;
                 no-redirects;
-                description "layer 3 interface for vlan {{ CN }}_{{ item.name }} {{ CN[-1] }}{{ item.id}}"
             }
         }
+    }
 {% endfor %}
 {% set vlans = vlans[0:-2] %}
 {% for item in trunk_ports %}
@@ -26,9 +27,9 @@ interfaces {
         unit 0 {
             family ethernet-switching {
                 native-vlan-id 999;
-                port-mode trunk;
+                interface-mode trunk;
                 vlan {
-                    members [ {% for vlan in vlans %}{{ vlan.name }}{% if (not loop.last) %} {% endif %} {% endfor %}];
+                    members [ {% for vlan in vlans %}{{ CN }}_{{ vlan.name }}{% if (not loop.last) %} {% endif %} {% endfor %}];
                 }
             }
         }
@@ -38,7 +39,7 @@ interfaces {
     {{ item.name }} {
         unit 0 {
             family ethernet-switching {
-                port-mode access;
+                interface-mode access;
                 vlan {
                     members {{ CN }}_{{vlans[0]['name']}};
                 }

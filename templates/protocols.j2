@@ -39,7 +39,7 @@ protocols {
             msti 1 {
                 bridge-priority {{ stp_priority }};
 {% set vlans = vlans[0:-2] %}
-                vlan [ {% for vlan in vlans %}{{ vlan.name }}{% if (not loop.last) %} {% endif %} {% endfor %}];
+                vlan [ {% for vlan in vlans %}{{ CN[2:] }}{{ vlan.id }}{% if (not loop.last) %} {% endif %} {% endfor %}];
             }
             
         }
