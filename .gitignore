@@ -1,6 +1,8 @@
 #Random reference file from Juniper vLab
 full-device.txt
 Juniper Lab 3-tier campus.yaml
+RE 20.2.yaml
+pfe 20.2.yaml
 #MacOS metadata file that I want to ignore
 .DS_Store
 
