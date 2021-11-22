@@ -3,7 +3,7 @@ interfaces {
     {{ item.name }} {
         unit {{ item.unit }} {
             family inet {
-                address {{ item.ip }} {{item.mask}};
+                address {{ item.ip }}{{item.mask}};
                 no-redirects;
                 description {{ item.description }};
             }
