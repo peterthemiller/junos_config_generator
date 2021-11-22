@@ -12,6 +12,9 @@ protocols {
                     }
                 }
                 {% endfor %}
+                interface lo0.0 {
+                    passive;
+                }
             }
             reference-bandwidth 100g;
         }
