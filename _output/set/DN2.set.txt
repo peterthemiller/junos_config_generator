@@ -1,0 +1,104 @@
+set system host-name DN2
+set system domain-name honeybadgers.lab
+set system root-authentication encrypted-password $6$Mj7jZ6K7$YFmGnY6bxnDKQJXJA3gXuCaVXPE4V8IV8mInSeDY7EI9QF7RV5jk/U8QCIST6ioTU1Mw8hdS0Qk0keqKRGtYR0 
+set system login user netlaw uid 2001
+set system login user netlaw class super-user
+set system login user netlaw authentication encrypted-password $6$Mj7jZ6K7$YFmGnY6bxnDKQJXJA3gXuCaVXPE4V8IV8mInSeDY7EI9QF7RV5jk/U8QCIST6ioTU1Mw8hdS0Qk0keqKRGtYR0 
+set system login user peter uid 2002
+set system login user peter class super-user
+set system login user peter authentication encrypted-password $6$ibKgP0Q6$NhsnM.EApWp4qY2SgaTzkmjWt76tAzLQ9.LVDJdMp9BT8xlau.BCNDy15nONLfGahlsagG34BF..ok1cyjn/30
+set system services ssh root-login deny
+set system syslog user * any emergency
+set system syslog file messages any notice
+set system syslog file messages authorization info
+set system syslog file interactive-commands interactive-commands any
+set interfaces lo0 unit 0 description "loopback"
+set interfaces lo0 unit 0 family inet address 4.4.4.4/32
+set interfaces lo0 unit 0 family inet no-redirects
+set interfaces xe-0/0/0 unit 0 description "to CN2"
+set interfaces xe-0/0/0 unit 0 family inet address 10.2.4.2/30
+set interfaces xe-0/0/0 unit 0 family inet no-redirects
+set interfaces xe-0/0/1 unit 0 description "to CN1"
+set interfaces xe-0/0/1 unit 0 family inet address 10.1.4.2/30
+set interfaces xe-0/0/1 unit 0 family inet no-redirects
+set interfaces irb unit 240 description "CN2_MGMT"
+set interfaces irb unit 240 family inet address 10.2.40.1/24
+set interfaces irb unit 240 family inet no-redirects
+set interfaces irb unit 210 description "layer 3 interface for vlan CN2_USERS 210" family inet address 10.2.10.1/24
+set interfaces irb unit 210 description "layer 3 interface for vlan CN2_USERS 210" family inet no-redirects
+set interfaces irb irb unit 220 description "layer 3 interface for vlan CN2_PHONES 220" family inet address 10.2.20.1/24
+set interfaces irb irb unit 220 description "layer 3 interface for vlan CN2_PHONES 220" family inet no-redirects
+set interfaces irb irb irb unit 230 description "layer 3 interface for vlan CN2_PRINTERS 230" family inet address 10.2.30.1/24
+set interfaces irb irb irb unit 230 description "layer 3 interface for vlan CN2_PRINTERS 230" family inet no-redirects
+set interfaces irb irb irb irb unit 240 description "layer 3 interface for vlan CN2_MGMT 240" family inet address 10.2.40.1/24
+set interfaces irb irb irb irb unit 240 description "layer 3 interface for vlan CN2_MGMT 240" family inet no-redirects
+set interfaces irb irb irb irb xe-0/0/2 unit 0 family ethernet-switching native-vlan-id 999
+set interfaces irb irb irb irb xe-0/0/2 unit 0 family ethernet-switching interface-mode trunk
+set interfaces irb irb irb irb xe-0/0/2 unit 0 family ethernet-switching vlan members [ CN2_USERS  CN2_PHONES  CN2_PRINTERS  CN2_MGMT ]
+set interfaces irb irb irb irb xe-0/0/3 unit 0 family ethernet-switching native-vlan-id 999
+set interfaces irb irb irb irb xe-0/0/3 unit 0 family ethernet-switching interface-mode trunk
+set interfaces irb irb irb irb xe-0/0/3 unit 0 family ethernet-switching vlan members [ CN2_USERS  CN2_PHONES  CN2_PRINTERS  CN2_MGMT ]
+set interfaces irb irb irb irb xe-0/0/4 unit 0 family ethernet-switching interface-mode access
+set interfaces irb irb irb irb xe-0/0/4 unit 0 family ethernet-switching vlan members CN2_USERS
+set interfaces irb irb irb irb xe-0/0/5 unit 0 family ethernet-switching interface-mode access
+set interfaces irb irb irb irb xe-0/0/5 unit 0 family ethernet-switching vlan members CN2_USERS
+set interfaces irb irb irb irb xe-0/0/6 unit 0 family ethernet-switching interface-mode access
+set interfaces irb irb irb irb xe-0/0/6 unit 0 family ethernet-switching vlan members CN2_USERS
+set interfaces irb irb irb irb xe-0/0/7 unit 0 family ethernet-switching interface-mode access
+set interfaces irb irb irb irb xe-0/0/7 unit 0 family ethernet-switching vlan members CN2_USERS
+set interfaces irb irb irb irb xe-0/0/8 unit 0 family ethernet-switching interface-mode access
+set interfaces irb irb irb irb xe-0/0/8 unit 0 family ethernet-switching vlan members CN2_USERS
+set interfaces irb irb irb irb xe-0/0/9 unit 0 family ethernet-switching interface-mode access
+set interfaces irb irb irb irb xe-0/0/9 unit 0 family ethernet-switching vlan members CN2_USERS
+set interfaces irb irb irb irb xe-0/0/10 unit 0 family ethernet-switching interface-mode access
+set interfaces irb irb irb irb xe-0/0/10 unit 0 family ethernet-switching vlan members CN2_USERS
+set interfaces irb irb irb irb xe-0/0/11 unit 0 family ethernet-switching interface-mode access
+set interfaces irb irb irb irb xe-0/0/11 unit 0 family ethernet-switching vlan members CN2_USERS
+set interfaces irb irb irb vlans CN2_USERS vlan-id 210
+set interfaces irb irb irb vlans CN2_USERS l3-interface irb.210
+set interfaces irb irb irb vlans CN2_USERS description CN2_Users
+set interfaces irb irb irb vlans CN2_PHONES vlan-id 220
+set interfaces irb irb irb vlans CN2_PHONES l3-interface irb.220
+set interfaces irb irb irb vlans CN2_PHONES description CN2_Phones
+set interfaces irb irb irb vlans CN2_PRINTERS vlan-id 230
+set interfaces irb irb irb vlans CN2_PRINTERS l3-interface irb.230
+set interfaces irb irb irb vlans CN2_PRINTERS description CN2_Printers
+set interfaces irb irb irb vlans CN2_MGMT vlan-id 240
+set interfaces irb irb irb vlans CN2_MGMT l3-interface irb.240
+set interfaces irb irb irb vlans CN2_MGMT description CN2_Management
+set interfaces irb irb irb vlans DEAD_VLAN vlan-id 666
+set interfaces irb irb irb vlans DEAD_VLAN description DEAD_VLAN
+set interfaces irb irb irb vlans NATIVE_VLAN vlan-id 999
+set interfaces irb irb irb vlans NATIVE_VLAN description NATIVE_VLAN
+set interfaces irb irb irb protocols ospf area 0.0.0.0 interface xe-0/0/0.0 interface-type p2p
+set interfaces irb irb irb protocols ospf area 0.0.0.0 interface xe-0/0/0.0 hello-interval 1
+set interfaces irb irb irb protocols ospf area 0.0.0.0 interface xe-0/0/0.0 dead-interval 4
+set interfaces irb irb irb protocols ospf area 0.0.0.0 interface xe-0/0/0.0 authentication md5 1 key "$9$chHrvLdVYaGi7-VYoJkqp0OISrvWL"
+set interfaces irb irb irb protocols ospf area 0.0.0.0 interface xe-0/0/1.0 interface-type p2p
+set interfaces irb irb irb protocols ospf area 0.0.0.0 interface xe-0/0/1.0 hello-interval 1
+set interfaces irb irb irb protocols ospf area 0.0.0.0 interface xe-0/0/1.0 dead-interval 4
+set interfaces irb irb irb protocols ospf area 0.0.0.0 interface xe-0/0/1.0 authentication md5 1 key "$9$chHrvLdVYaGi7-VYoJkqp0OISrvWL"
+set interfaces irb irb irb protocols ospf area 0.0.0.0 interface lo0.0 passive
+set interfaces irb irb irb protocols ospf reference-bandwidth 100g
+set interfaces irb irb irb protocols mstp bpdu-block-on-edge
+set interfaces irb irb irb protocols mstp configuration-name labregion1
+set interfaces irb irb irb protocols mstp bridge-priority 8k
+set interfaces irb irb irb protocols mstp interface all
+set interfaces irb irb irb protocols mstp interface xe-0/0/4 no-root-port
+set interfaces irb irb irb protocols mstp interface xe-0/0/4 edge
+set interfaces irb irb irb protocols mstp interface xe-0/0/5 no-root-port
+set interfaces irb irb irb protocols mstp interface xe-0/0/5 edge
+set interfaces irb irb irb protocols mstp interface xe-0/0/6 no-root-port
+set interfaces irb irb irb protocols mstp interface xe-0/0/6 edge
+set interfaces irb irb irb protocols mstp interface xe-0/0/7 no-root-port
+set interfaces irb irb irb protocols mstp interface xe-0/0/7 edge
+set interfaces irb irb irb protocols mstp interface xe-0/0/8 no-root-port
+set interfaces irb irb irb protocols mstp interface xe-0/0/8 edge
+set interfaces irb irb irb protocols mstp interface xe-0/0/9 no-root-port
+set interfaces irb irb irb protocols mstp interface xe-0/0/9 edge
+set interfaces irb irb irb protocols mstp interface xe-0/0/10 no-root-port
+set interfaces irb irb irb protocols mstp interface xe-0/0/10 edge
+set interfaces irb irb irb protocols mstp interface xe-0/0/11 no-root-port
+set interfaces irb irb irb protocols mstp interface xe-0/0/11 edge
+set interfaces irb irb irb protocols mstp msti 1 bridge-priority 8k
+set interfaces irb irb irb protocols mstp msti 1 vlan [ 210  220  230  240 ]
